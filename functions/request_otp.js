@@ -24,9 +24,9 @@ module.exports = async (request, response) => {
       const message = await twilio.sendOtpSms(phone, code);
       // Store OTP code in Firestore with expiration (5 minutes)
       const expiresAt = new Date(Date.now() + 5 * 60 * 1000); // 5 minutes from now
-      await admin.firestore().collection("otpCodes").doc(phone).set({
+      await admin.firestore().collection("otpCodes").doc(rawPhone).set({
         code,
-        phone,
+        phone: rawPhone,
         expiresAt,
         createdAt: admin.firestore.FieldValue.serverTimestamp(),
       });

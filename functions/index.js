@@ -15,6 +15,7 @@ if (process.env.NODE_ENV !== "production") {
 const { onRequest } = require("firebase-functions/v2/https");
 const createUser = require("./create_user");
 const requestOTP = require("./request_otp");
+const verifyOTP = require("./verify_otp");
 const admin = require("firebase-admin");
 
 // Initialize Firebase Admin (uses default credentials in Cloud Functions)
@@ -23,3 +24,4 @@ if (!admin.apps.length) {
 }
 exports.createUser = onRequest(createUser);
 exports.requestOTP = onRequest(requestOTP);
+exports.verifyOTP = onRequest(verifyOTP);
