@@ -17,3 +17,8 @@ exports.helloWorld = onRequest((request, response) => {
   logger.info("Hello logs!", {structuredData: true});
   response.send("Hello from Firebase!");
 });
+
+exports.goodByeWorld = onRequest((request, response) => {
+  logger.info("Goodbye logs!", {structuredData: true});
+  response.send("Goodbye from Firebase!");
+});
