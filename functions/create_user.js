@@ -18,6 +18,9 @@ module.exports = async (request, response) => {
     response.send(user);
   } catch (error) {
     logger.error("Error creating user!", error);
+    if (error.code === "auth/uid-already-exists") {
+      return response.status(422).send({ error: "User with this phone number already exists" });
+    }
     response.status(422).send({ error: error.message });
   }
 };
